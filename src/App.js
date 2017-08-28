@@ -26,8 +26,8 @@ class App extends Component {
   }
 
   render() {
-    const { data } = mock,
-          { tagsData} = this.state;
+    const { data }     = mock,
+          { tagsData } = this.state;
     
     return (
       <div className="App">
