@@ -29,16 +29,16 @@ class App extends Component {
     const { tagsData } = this.state;
     
     return (
-      <div className="App">
-        <div>Add tag</div>
+      <div>
+        <div>Search by tag</div>
         <input type="text" value={this.state.tag} onChange={(e) => this.setState({tag: e.target.value})}/>
         <input type="button" value="Click me" onClick={this.getTags}/>
 
-        <div>
+        <div className="cardContainer">
           {tagsData && tagsData.map((tag, index) => {
             return (
-              <div key={index}>
-                <p>{tag.title}</p>
+              <div key={index} className="card">
+                <p>{tag.title.substring(0, 20)}...</p>
                 <img src={tag.media.m}/>
               </div>
             )
