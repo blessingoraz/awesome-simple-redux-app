@@ -18,7 +18,6 @@ class App extends Component {
       })
       .then((data) => {
         const result = JSON.parse(data);
-        console.log(result.items)
         this.setState({
           tagsData: result.items
         })
