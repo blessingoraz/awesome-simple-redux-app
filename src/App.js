@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    tag: ""
+  }
+
+  getTags = () => {
+    const url = "https://api.flickr.com/services/feeds/photos_public.gne?format=jsonp";
+    const { tag } = this.state;
+    fetch(`${url}&tags=${tag}`, {mode: 'no-cors'})
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div>Add tag</div>
+        <input type="text" value={this.state.tag} onChange={(e) => this.setState({tag: e.target.value})}/>
+        <input type="button" value="Click me" onClick={this.getTags}/>
       </div>
     );
   }
