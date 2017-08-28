@@ -32,7 +32,7 @@ class App extends Component {
       <div>
         <div>Search by tag</div>
         <input type="text" value={this.state.tag} onChange={(e) => this.setState({tag: e.target.value})}/>
-        <input type="button" value="Click me" onClick={this.getTags}/>
+        <input type="button" value="SEARCH" onClick={this.getTags}/>
 
         <div className="cardContainer">
           {tagsData && tagsData.map((tag, index) => {
