@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import * as mock from './mockData';
 
 class App extends Component {
 
@@ -19,6 +18,7 @@ class App extends Component {
       })
       .then((data) => {
         const result = JSON.parse(data);
+        console.log(result.items)
         this.setState({
           tagsData: result.items
         })
@@ -26,8 +26,7 @@ class App extends Component {
   }
 
   render() {
-    const { data }     = mock,
-          { tagsData } = this.state;
+    const { tagsData } = this.state;
     
     return (
       <div className="App">
@@ -40,6 +39,7 @@ class App extends Component {
             return (
               <div key={index}>
                 <p>{tag.title}</p>
+                <img src={tag.media.m}/>
               </div>
             )
           })}
