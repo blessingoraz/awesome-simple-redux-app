@@ -10,7 +10,7 @@ class App extends Component {
   getTags = () => {
     const url = "https://api.flickr.com/services/feeds/photos_public.gne?format=jsonp";
     const { tag } = this.state;
-    fetch(`${url}&tags=${tag}`, {mode: 'no-cors'})
+    fetch(`${url}&tags=${tag}`)
       .then((res) => res.json())
       .then((data) => console.log(data))
   }
