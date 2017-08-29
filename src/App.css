@@ -1,3 +1,6 @@
+body {
+  background-color: #FEFEFE;
+}
 .cardContainer {
   display: flex;
   flex-wrap: wrap;

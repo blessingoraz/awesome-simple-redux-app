@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTags } from './tagActions';
+import {fetchTags}  from './tagActions';
 import Tags from './Tags';
 import './App.css';
 
@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   render() {
-    const { tagsData } = this.state;
 
     return (
       <div>
@@ -27,16 +26,15 @@ class App extends Component {
         <input type="text" value={this.state.tag} onChange={(e) => this.setState({ tag: e.target.value })} />
         <input type="button" value="SEARCH" onClick={this.getTags} />
 
-        <Tags />
+        <Tags tags={this.props.tags}/>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({tags}) => {
-  console.log(tags, "tags is here")
-  // tags: tags.
+  return { tags };
 }
 
 
-export default connect(mapStateToProps, { fetchTags })(App);
+export default connect( mapStateToProps, { fetchTags })(App);

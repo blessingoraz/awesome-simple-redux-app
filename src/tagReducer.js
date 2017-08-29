@@ -1,15 +1,14 @@
 import { combineReducers } from 'redux';
 
-const tags =  (state=[], action) => {
-    switch(action.type) {
-        case 'GET_TAGS':
-            return [
-                action.tags,
-                ...state
-            ]
-        default:
-            return state;
+const tags = (state = {tags: []}, action) => {
+  switch (action.type) {
+    case 'SET_FETCHED_TAGS': {
+      const {tags} = action;
+      return {...state, tags: tags };
     }
+    default:
+      return state;
+  }
 }
 
-export const reducer = combineReducers({tags});
+export default combineReducers({ tags });

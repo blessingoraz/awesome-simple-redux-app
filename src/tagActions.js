@@ -1,12 +1,12 @@
 
-export const fetchTags = (url) => {
+export function fetchTags (url) {
   return (dispatch) => {
     dispatch(getFetchTags())
     return fetch(url)
-      .then((res) => { return res.text() })
+      .then((res) => { return res.text()})
       .then((data) => { 
         const result = JSON.parse(data);
-        dispatch(setFetchTags({ tags: reresult.itemss }))
+        dispatch(setFetchTags({ tags: result.items }))
       })
       .catch((err) => {
         console.log('An error has occured', err);
@@ -14,13 +14,13 @@ export const fetchTags = (url) => {
   }
 }
 
-getFetchTags = () => {
+const getFetchTags = () => {
   return {
     type: "GET_FETCHED_TAGS",
   }
 }
 
-setFetchTags = ({ tags }) => {
+const setFetchTags = ({ tags }) => {
   return {
     type: "SET_FETCHED_TAGS",
     tags
