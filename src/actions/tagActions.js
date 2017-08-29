@@ -9,8 +9,8 @@ export function fetchTags (url) {
         const result = JSON.parse(data);
         dispatch(setFetchTags({ tags: result.items }))
       })
-      .catch((err) => {
-        console.log('An error has occured', err);
+      .catch((error) => {
+        dispatch(setTagError({error: error}))
       })
   }
 }
@@ -25,5 +25,12 @@ const setFetchTags = ({ tags }) => {
   return {
     type: AT.SET_FETCHED_TAGS,
     tags
+  }
+}
+
+const setTagError = ({ error }) => {
+  return {
+    type: AT.SET_TAG_ERROR,
+    error
   }
 }

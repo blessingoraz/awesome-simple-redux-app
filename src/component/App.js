@@ -16,10 +16,12 @@ class App extends Component {
     const url = tag ? `http://api.flickr.com/services/feeds/photos_public.gne?tags=${tag}&format=json&nojsoncallback=true` : ''
 
     this.props.fetchTags(url);
+    this.setState({tag: ''})
   }
 
   render() {
-    const {loading, tags } = this.props;
+    const {loading, tags, error } = this.props;
+
     if(loading) {
       return (
         <div>
@@ -27,6 +29,7 @@ class App extends Component {
         </div>
       )
     }
+
     return (
       <div>
         <h2>Search by tag</h2>
@@ -40,9 +43,11 @@ class App extends Component {
 }
 
 const mapStateToProps = ({tagsReducer}) => {
+  console.log(tagsReducer, "reducer is here")
   return { 
     tags: tagsReducer.tags || {},
-    loading: tagsReducer.loading
+    loading: tagsReducer.loading,
+    error: tagsReducer.error
    };
 }
 
