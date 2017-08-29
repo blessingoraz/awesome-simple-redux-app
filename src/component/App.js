@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchTags}  from './tagActions';
+import {fetchTags}  from '../actions/tagActions';
 import Tags from './Tags';
-import './App.css';
+import '../App.css';
 
 
 class App extends Component {
@@ -19,21 +19,31 @@ class App extends Component {
   }
 
   render() {
-
+    const {loading, tags } = this.props;
+    if(loading) {
+      return (
+        <div>
+          <h2>loading ... </h2>
+        </div>
+      )
+    }
     return (
       <div>
         <h2>Search by tag</h2>
         <input type="text" value={this.state.tag} onChange={(e) => this.setState({ tag: e.target.value })} />
         <input type="button" value="SEARCH" onClick={this.getTags} />
 
-        <Tags tags={this.props.tags}/>
+        <Tags tags={tags}/>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({tags}) => {
-  return { tags };
+const mapStateToProps = ({tagsReducer}) => {
+  return { 
+    tags: tagsReducer.tags || {},
+    loading: tagsReducer.loading
+   };
 }
 
 

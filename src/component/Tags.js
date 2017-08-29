@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 
 const Tags = ({ tags }) => {
   return (
     <div className="cardContainer">
-      {tags.tags && tags.tags.map((tag, index) => {
+      {tags && tags.map((tag, index) => {
         return (
           <div key={index} className="card">
             <p>{tag.title.substring(0, 20)}...</p>

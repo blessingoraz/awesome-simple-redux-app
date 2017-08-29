@@ -1,3 +1,4 @@
+import AT from './ActionTypes';
 
 export function fetchTags (url) {
   return (dispatch) => {
@@ -16,13 +17,13 @@ export function fetchTags (url) {
 
 const getFetchTags = () => {
   return {
-    type: "GET_FETCHED_TAGS",
+    type: AT.GET_FETCHED_TAGS,
   }
 }
 
 const setFetchTags = ({ tags }) => {
   return {
-    type: "SET_FETCHED_TAGS",
+    type: AT.SET_FETCHED_TAGS,
     tags
   }
 }
