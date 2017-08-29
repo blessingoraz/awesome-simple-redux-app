@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchTags } from './tagActions';
+import Tags from './Tags';
 import './App.css';
 
 
@@ -10,42 +13,30 @@ class App extends Component {
 
   getTags = () => {
     const { tag } = this.state;
-    const url = tag ?`http://api.flickr.com/services/feeds/photos_public.gne?tags=${tag}&format=json&nojsoncallback=true`: ''
+    const url = tag ? `http://api.flickr.com/services/feeds/photos_public.gne?tags=${tag}&format=json&nojsoncallback=true` : ''
 
-    fetch(url)
-      .then((res) => {
-        return res.text()
-      })
-      .then((data) => {
-        const result = JSON.parse(data);
-        this.setState({
-          tagsData: result.items
-        })
-      });
+    this.props.fetchTags(url);
   }
 
   render() {
     const { tagsData } = this.state;
-    
+
     return (
       <div>
-        <div>Search by tag</div>
-        <input type="text" value={this.state.tag} onChange={(e) => this.setState({tag: e.target.value})}/>
-        <input type="button" value="SEARCH" onClick={this.getTags}/>
+        <h2>Search by tag</h2>
+        <input type="text" value={this.state.tag} onChange={(e) => this.setState({ tag: e.target.value })} />
+        <input type="button" value="SEARCH" onClick={this.getTags} />
 
-        <div className="cardContainer">
-          {tagsData && tagsData.map((tag, index) => {
-            return (
-              <div key={index} className="card">
-                <p>{tag.title.substring(0, 20)}...</p>
-                <img src={tag.media.m}/>
-              </div>
-            )
-          })}
-        </div>
+        <Tags />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({tags}) => {
+  console.log(tags, "tags is here")
+  // tags: tags.
+}
+
+
+export default connect(mapStateToProps, { fetchTags })(App);
